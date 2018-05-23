@@ -1,0 +1,27 @@
+<h1 class="{type}">YO</h1>
+
+<style>
+    .boring {
+        color: #666;
+    }
+
+    .exciting {
+        color: orange;
+    }
+</style>
+
+<script>
+    export default {
+        data : () => ({
+            type: "exciting"
+        }),
+
+        oncreate() {
+            window.message = this;
+        },
+        
+        ondestroy() {
+
+        }
+    }
+</script>

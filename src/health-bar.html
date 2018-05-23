@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="gauge" style="{current}"></div>
+</div>
+
+<button on:click="add(5)"> + 5 </button>
+<button on:click="add(-5)"> - 5 </button>
+
+<style>
+    .container {
+        height: 1.5rem;
+        border: 0.1rem solid #000;
+        margin: 1rem 0; 
+    }
+
+    .gauge {
+        height: 100%;
+
+        background-color: pink;
+
+        transform: scaleX(0.5);
+        transform-origin: left;
+    }
+</style>
+
+<script>
+    import add from "./add.js";
+
+    export default {
+        data : () => ({
+            health: 25,
+            max: 100
+        }),
+
+        computed : {
+            current: ({health, max}) => `transform: scaleX(${health / max});`
+        },
+
+        methods : {
+            add(number) {
+                const { health } = this.get();
+
+                this.set({
+                    health: add(health, number)
+                });
+            }
+        },
+
+        oncreate() {
+            window.health = this;
+        },
+        
+        ondestroy() {
+
+        }
+    }
+</script>
